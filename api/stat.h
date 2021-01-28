@@ -28,6 +28,10 @@ struct stat_disk_t {
     uint64_t free;
 };
 
+struct stat_cpu_t {
+    uint16_t count;
+};
+
 /**
  * Gets the system's hostname.
  *
@@ -42,3 +46,7 @@ bool stat_hostname(char *hostname);
 bool stat_memory(struct stat_memory_t *memory);
 
 bool stat_disk(const char *path, struct stat_disk_t *disk);
+
+bool stat_cpu(struct stat_cpu_t *cpu);
+
+const char * stat_error();

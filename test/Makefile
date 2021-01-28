@@ -4,7 +4,7 @@ obj=test.o
 
 cc=gcc
 cflags=-Wall -g
-ldflags=-lstat -lpthread
+ldflags=-lstat
 
 all: $(name)
 
@@ -15,4 +15,4 @@ $(name): $(obj)
 	$(cc) -o $@ -c $< $(cflags)
 
 clean:
-	rm -f $(obj) $(name) *.txt
+	rm -f $(obj) $(name)
