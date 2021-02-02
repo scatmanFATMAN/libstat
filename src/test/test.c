@@ -7,10 +7,12 @@ main(int argc, char **argv) {
     struct stat_disk_t disk;
     struct stat_cpu_t cpu;
     char hostname[STAT_HOSTNAME_MAX + 1];
+    uint64_t uptime;
 
     stat_hostname(hostname);
     stat_memory(&memory);
     stat_disk("/", &disk);
+    stat_uptime(&uptime);
 
     if (!stat_cpu(&cpu)) {
         printf("Error getting CPU: %s\n", stat_error());
@@ -26,6 +28,7 @@ main(int argc, char **argv) {
     printf("Total Disk [/]: %lu\n", disk.total);
     printf("Free Disk [/]: %lu\n", disk.free);
     printf("CPU Count: %u\n", cpu.count);
+    printf("Uptime: %lu\n", uptime);
 
     return 0;
 }

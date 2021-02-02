@@ -210,6 +210,24 @@ stat_cpu(struct stat_cpu_t *cpu) {
 #endif
 }
 
+bool
+stat_uptime(uint64_t *seconds) {
+#if defined(_WIN32)
+    *seconds = GetTickCount64() / 1000;
+#else
+    struct sysinfo info;
+
+    if (sysinfo(&info) == -1) {
+        stat_store_error(true, NULL);
+        return false;
+    }
+
+    *seconds = info.uptime;
+#endif
+
+    return true;
+}
+
 const char *
 stat_error() {
     return error;
